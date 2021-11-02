@@ -18,29 +18,31 @@
   </head>
   
   <body>
-    <header class="text-center py-5">
-      <h1 class="mb-5 fw-bold">Hello Vueoolean - Todolist</h1>
-      <nav class="navbar navbar-light">
-        <form class="container">
-          <div class="input-group">
-            <input type="text" class="form-control py-2" placeholder="Vorrei..." id="todo_txt">
-            <button type="button" class="input-group-text btn btn-outline-primary fw-bold">Aggiungi</button>
-          </div>
-        </form>
-      </nav>
-    </header>
+    <div id="root">
+      <header class="text-center py-5">
+        <h1 class="mb-5 fw-bold">Hello Vueoolean - Todolist</h1>
+        <nav class="navbar navbar-light">
+          <form class="container">
+            <div class="input-group">
+              <input @keydown.enter.prevent="onBtnAddClick" type="text" class="form-control py-2" placeholder="Vorrei..." id="todo_txt" v-model="toAddToDo">
+              <button @click="onBtnAddClick" type="button" class="input-group-text btn btn-outline-primary fw-bold">Aggiungi</button>
+            </div>
+          </form>
+        </nav>
+      </header>
+  
+      <main>
+        <div class="container">
+          <ul>
 
-    <main>
-      <div class="container">
-
-        <ul>
-          <li class="input-group">
-            <div class="list_flag"></div>
-            <div class="list_text d-flex align-items-center justify-content-between">An item <i class="fas fa-times"></i></div>
-          </li>
-        </ul>
-
-      </div>
-    </main>
+            <li class="input-group" v-for="element, i in toDoList">
+              <div class="list_flag"></div>
+              <div class="list_text d-flex align-items-center justify-content-between">{{element}} <i @click="deleteToDo(i)" class="fas fa-times"></i></div>
+            </li>
+          
+          </ul>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

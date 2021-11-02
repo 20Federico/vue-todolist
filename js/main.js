@@ -1,20 +1,24 @@
 'use strict'
-
-
 Vue.config.devtools = true;
 
 window.addEventListener('DOMContentLoaded', function () {
-  const vueApp = new Vue({
-      el: '',
+  new Vue({
+      el: '#root',
       data: {
-        username: '',
+        toDoList: [],
+        toAddToDo: '',
       },
       methods: {
-        function () {
-          
+        onBtnAddClick () {
+          if (this.toAddToDo.trim() === '') {
+            return
+          } else {
+            this.toDoList.push(this.toAddToDo);
+          }
+        },
+        deleteToDo (indexToDelete) {
+          this.toDoList.splice(indexToDelete, 1)
         },
       },
   });
-
-
 })
